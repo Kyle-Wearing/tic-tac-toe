@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -6,18 +6,20 @@ function App() {
   const [turn, setTurn] = useState(0);
   const [winner, setWinner] = useState(null);
 
+  useEffect(() => {
+    checkForWinner(board);
+  }, [turn]);
+
   function handlePress(location) {
-    if (board[location][0] === "") {
+    if (board[location][0] === "" && !winner) {
       if (turn % 2 === 0) {
         setBoard((currBoard) => {
           currBoard[location] = ["X", turn];
-          checkForWinner(currBoard);
           return currBoard;
         });
       } else if (turn % 2 !== 0) {
         setBoard((currBoard) => {
           currBoard[location] = ["O", turn];
-          checkForWinner(currBoard);
           return currBoard;
         });
       }
@@ -69,6 +71,11 @@ function App() {
 
   return (
     <>
+      {!winner ? (
+        <h1 className="title">{turn % 2 === 0 ? "X's turn" : "O's turn"}</h1>
+      ) : (
+        <h1>{`${winner} wins`}</h1>
+      )}
       <div className="tic-tac-toe-board">
         <div className="row">
           <div
