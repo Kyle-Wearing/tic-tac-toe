@@ -11,7 +11,7 @@ body {
   align-items: center;
   height: 100vh;
   background-image: url(./assets/tic-tac-toe.jpg);
-  background-size: contain;
+  background-size: cover;
 }
 
 .tic-tac-toe-board {
