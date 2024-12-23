@@ -74,7 +74,7 @@ function App() {
       {!winner ? (
         <h1 className="title">{turn % 2 === 0 ? "X's turn" : "O's turn"}</h1>
       ) : (
-        <h1>{`${winner} wins`}</h1>
+        <h1 className="title">{`${winner} wins`}</h1>
       )}
       <div className="tic-tac-toe-board">
         <div className="row">
